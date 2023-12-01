@@ -1,0 +1,49 @@
+Standar API
+
+{root.api}/{version}/{grouping}/{endpoint}
+
+Standar Status Response
+
+200 - OK                    --> Call API Success
+201 - CREATED               --> Post Success
+400 - BAD REQUEST           --> Error on Client Side
+401 - UNAUTHORIZED          --> User not authorized to the request
+403 - FORBIDDEN             --> User not allowed to access
+404 - NOT FOUND             --> Request Endpoint Not Found
+500 - INTERNAL SERVER ERROR --> Error on Server Side
+502 - BAD GATEWAY           --> Invalid Response From Another Request
+
+GROUP: Authentication
+
+[1] - Login
+
+
+GROUP: Product Catalogue
+
+[1] - Display Product Catalogue
+{root.api}/{version}/auth/login
+
+req:
+{
+    "role": "display",
+    "password": "123"
+}
+
+res: 
+{
+    "message": "Login Success",
+    "data": {
+        "role": "display",
+        "password": "123"
+    }
+}
+
+err-response:
+400 -> Input yang Anda masukkan tidak valid
+
+[2] - Create Request 
+
+GROUP: List of Request
+
+[1] - Get Product Request
+[2] - Confirm Request
