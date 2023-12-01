@@ -1,0 +1,16 @@
+{
+  "name": "onlycommercev1",
+  "version": "1.0.0",
+  "description": "Aplikasi OnlyCommerce, menyediakan fitur layanan penambahan stok display barang pada toko melalui request kepada staf gudang berdasarkan jumlah stok yang tersedia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2"
+  }
+}
