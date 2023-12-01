@@ -13,14 +13,11 @@ Standar Status Response
 500 - INTERNAL SERVER ERROR --> Error on Server Side
 502 - BAD GATEWAY           --> Invalid Response From Another Request
 
++================================================+
+
 GROUP: Authentication
 
 [1] - Login
-
-
-GROUP: Product Catalogue
-
-[1] - Display Product Catalogue
 {root.api}/{version}/auth/login
 
 req:
@@ -39,9 +36,50 @@ res:
 }
 
 err-response:
-400 -> Input yang Anda masukkan tidak valid
+400 -> Invalid Input
 
-[2] - Create Request 
++================================================+
+
+GROUP: Product Catalogue
+
+[1] - Display Product Catalogue
+{root.api}/{version}/catalogue/display
+
+res:
+{
+    "message": "Data Has Been Fetched",
+    "data": {
+        "pid": "1",
+        "product_name": "Mi Gaga",
+        "quantity": 100,
+        "img": "img_url:something"
+    }
+}
+
+[2] - Create Request
+{root.api}/{version}/catalogue/request
+
+req:
+{
+    "pid": "1"
+    "req_stats": "requested",
+    "req_quanity": 20
+}
+
+res:
+{
+    "message": "Data Has Been Created",
+    "data": {
+        "pid":
+        "product_name": "Mi Gaga",
+        "quantity": 100,
+        "img": "img_url:something",
+        "req_stats": "requested",
+        "req_quanity": 20
+    }
+}
+
++================================================+
 
 GROUP: List of Request
 
