@@ -18,7 +18,7 @@ Standar Status Response
 GROUP: Authentication
 
 [1] - Login
-{root.api}/{version}/auth/login
+{root.api}/v1/auth/login
 
 req:
 {
@@ -43,7 +43,7 @@ err-response:
 GROUP: Product Catalogue
 
 [1] - Display Product Catalogue
-{root.api}/{version}/catalogue/display
+{root.api}/v1/catalogue/display
 
 res:
 {
@@ -57,7 +57,7 @@ res:
 }
 
 [2] - Create Request
-{root.api}/{version}/catalogue/request
+{root.api}/v1/catalogue/request
 
 req:
 {
