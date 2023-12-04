@@ -63,7 +63,7 @@ req:
 {
     "pid": "1"
     "req_stats": "requested",
-    "req_quanity": 20
+    "req_quantity": 20
 }
 
 res:
