@@ -6,6 +6,8 @@ const app = express()
 const catalogueRoutes = require('./src/routes/catalogue')
 const requestRoutes = require('./src/routes/request')
 
+const { notFound, errorMiddleware } = require('./src/errorMiddleware')
+
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*')
 	res.setHeader(
@@ -21,13 +23,8 @@ app.use(express.json())
 app.use('/v1/catalogue', catalogueRoutes)
 app.use('/v1/requests', requestRoutes)
 
-app.use((error, req, res, next) => {
-	const status = error.errorStatur || 500
-	const message = error.message
-	const data = error.data
-
-	res.status(status).json({ message: message, data: data })
-})
+app.use(notFound)
+app.use(errorMiddleware)
 
 mongoose
 	.connect(process.env.MONGODB_URI)

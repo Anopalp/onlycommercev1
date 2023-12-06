@@ -3,6 +3,19 @@ const asyncHandler = require('express-async-handler')
 
 const getAllRequests = asyncHandler(async (req, res, next) => {
 	const data = await RequestObj.find({}).populate('produk')
+	if (data.length === 0) {
+		res.status(404)
+		throw new Error('Request not found')
+	}
+	res.status(200).json(data)
+})
+
+const getRequest = asyncHandler(async (req, res, next) => {
+	const data = await RequestObj.findById(req.params.id).populate('produk')
+	if (!data) {
+		res.status(404)
+		throw new Error('Request not found')
+	}
 	res.status(200).json(data)
 })
 
@@ -21,4 +34,4 @@ const postRequest = asyncHandler(async (req, res, next) => {
 	})
 })
 
-module.exports = { postRequest, getAllRequests }
+module.exports = { postRequest, getAllRequests, getRequest }
