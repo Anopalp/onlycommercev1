@@ -34,4 +34,21 @@ const postRequest = asyncHandler(async (req, res, next) => {
 	})
 })
 
-module.exports = { postRequest, getAllRequests, getRequest }
+const updateRequest = asyncHandler(async (req, res, next) => {
+	let updatedRequest = await RequestObj.findByIdAndUpdate(
+		req.params.id,
+		{
+			status_request: req.body.status,
+		},
+		{
+			runValidators: true,
+			new: true,
+		}
+	)
+	res.status(200).json({
+		message: 'Request updated',
+		updatedRequest,
+	})
+})
+
+module.exports = { postRequest, getAllRequests, getRequest, updateRequest }
