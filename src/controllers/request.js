@@ -1,6 +1,12 @@
 const RequestObj = require('../models/request')
+const asyncHandler = require('express-async-handler')
 
-async function postRequest(req, res, next) {
+const getAllRequests = asyncHandler(async (req, res, next) => {
+	const data = await RequestObj.find({}).populate('produk')
+	res.status(200).json(data)
+})
+
+const postRequest = asyncHandler(async (req, res, next) => {
 	const { nama, produk, jumlah } = req.body
 	let createdRequest = await RequestObj.create({
 		nama_request: nama,
@@ -13,6 +19,6 @@ async function postRequest(req, res, next) {
 		message: 'Request created',
 		createdRequest,
 	})
-}
+})
 
-module.exports = { postRequest }
+module.exports = { postRequest, getAllRequests }

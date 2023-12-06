@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const { postRequest } = require('../controllers/request')
+const { postRequest, getAllRequests } = require('../controllers/request')
 
+router.get('/', getAllRequests)
 router.post('/', postRequest)
-router.get('/', (req, res) => res.send('Bisaaa'))
 
 module.exports = router
