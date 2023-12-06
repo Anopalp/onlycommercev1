@@ -4,7 +4,7 @@ require('dotenv').config()
 
 const app = express()
 const catalogueRoutes = require('./src/routes/catalogue')
-const requestRoutes = require('./src/routes/catalogue')
+const requestRoutes = require('./src/routes/request')
 
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*')
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use('/v1/catalogue', catalogueRoutes)
-app.use('/v1/requests')
+app.use('/v1/requests', requestRoutes)
 
 app.use((error, req, res, next) => {
 	const status = error.errorStatur || 500
