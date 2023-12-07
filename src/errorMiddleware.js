@@ -1,5 +1,5 @@
 const notFound = (req, res, next) => {
-	const error = new Error('Link not found')
+	const error = new Error('Link tidak dapat ditemukan')
 	res.status(404)
 	next(error)
 }
