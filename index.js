@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 const app = express()
-const catalogueRoutes = require('./src/routes/catalogue')
+const productRoutes = require('./src/routes/product')
 const requestRoutes = require('./src/routes/request')
 
 const { notFound, errorMiddleware } = require('./src/errorMiddleware')
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
-app.use('/v1/catalogue', catalogueRoutes)
+app.use('/v1/products', productRoutes)
 app.use('/v1/requests', requestRoutes)
 
 app.use(notFound)
