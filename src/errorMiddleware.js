@@ -5,7 +5,7 @@ const notFound = (req, res, next) => {
 }
 
 const errorMiddleware = (error, req, res, next) => {
-	const status = res.statusCode || 500
+	const status = res.statusCode !== 200 ? res.statusCode : 500
 	const message = error.message
 	const data = error.data
 

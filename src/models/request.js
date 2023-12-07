@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const RequestObj = new Schema(
+const Request = new Schema(
 	{
 		nama_request: {
 			type: String,
@@ -14,7 +14,7 @@ const RequestObj = new Schema(
 		},
 		produk: {
 			type: Schema.Types.ObjectId,
-			ref: 'ProductsCatalogue',
+			ref: 'Product',
 		},
 		jumlah: {
 			type: Number,
@@ -35,4 +35,4 @@ const RequestObj = new Schema(
 	}
 )
 
-module.exports = mongoose.model('RequestObj', RequestObj)
+module.exports = mongoose.model('Request', Request)

@@ -1,8 +1,8 @@
-const RequestObj = require('../models/request')
+const Request = require('../models/request')
 const asyncHandler = require('express-async-handler')
 
 const getAllRequests = asyncHandler(async (req, res, next) => {
-	const data = await RequestObj.find({}).populate('produk')
+	const data = await Request.find({}).populate('produk')
 	if (data.length === 0) {
 		res.status(404)
 		throw new Error('Request not found')
@@ -11,7 +11,7 @@ const getAllRequests = asyncHandler(async (req, res, next) => {
 })
 
 const getRequest = asyncHandler(async (req, res, next) => {
-	const data = await RequestObj.findById(req.params.id).populate('produk')
+	const data = await Request.findById(req.params.id).populate('produk')
 	if (!data) {
 		res.status(404)
 		throw new Error('Request not found')
@@ -21,7 +21,7 @@ const getRequest = asyncHandler(async (req, res, next) => {
 
 const postRequest = asyncHandler(async (req, res, next) => {
 	const { nama, produk, jumlah } = req.body
-	let createdRequest = await RequestObj.create({
+	let createdRequest = await Request.create({
 		nama_request: nama,
 		produk,
 		jumlah,
@@ -35,7 +35,7 @@ const postRequest = asyncHandler(async (req, res, next) => {
 })
 
 const updateRequest = asyncHandler(async (req, res, next) => {
-	let updatedRequest = await RequestObj.findByIdAndUpdate(
+	let updatedRequest = await Request.findByIdAndUpdate(
 		req.params.id,
 		{
 			status_request: req.body.status,
