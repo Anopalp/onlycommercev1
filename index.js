@@ -20,6 +20,13 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
+app.get('/', (req, res) => {
+	res.status(200).json({
+		product: '/v1/products',
+		request: '/v1/requests',
+	})
+})
+
 app.use('/v1/products', productRoutes)
 app.use('/v1/requests', requestRoutes)
 
