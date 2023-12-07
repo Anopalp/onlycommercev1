@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ProductsCatalogue = new Schema({
+const Product = new Schema({
     id_produk: {
         type: Number,
         required: true
@@ -20,4 +20,4 @@ const ProductsCatalogue = new Schema({
     }
 });
 
-module.exports = mongoose.model('ProductsCatalogue', ProductsCatalogue);
+module.exports = mongoose.model('Product', Product);
