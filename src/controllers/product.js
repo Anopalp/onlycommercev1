@@ -65,17 +65,14 @@ exports.postProduct = (req, res, next) => {
 }
 
 exports.updateProduct = (req, res, next) => {
-    if (!req.body || !req.body.nama_produk || !req.body.jumlah_produk || !req.body.gambar_produk) {
+    if (!req.body || !req.body.jumlah_produk) {
         res.status(400).json({
             message: 'Bad Request. Lengkapi Parameter!'
         });
         return;
     }
 
-    const id_produk = req.body.id_produk;
-    const nama_produk = req.body.nama_produk;
     const jumlah_produk = req.body.jumlah_produk;
-    const gambar_produk = req.body.gambar_produk;
     const pId = req.params.pId;
 
     Product.findById(pId)
@@ -86,10 +83,7 @@ exports.updateProduct = (req, res, next) => {
                 throw err;
             }
 
-            dataProduct.id_produk = id_produk;
-            dataProduct.nama_produk = nama_produk;
             dataProduct.jumlah_produk = jumlah_produk;
-            dataProduct.gambar_produk = gambar_produk;
 
             return dataProduct.save();
         })
