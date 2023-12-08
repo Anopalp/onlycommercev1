@@ -32,6 +32,20 @@ const postRequest = asyncHandler(async (req, res, next) => {
 		res.status(400)
 		throw new Error('Bad Request. Lengkapi Parameter!')
 	}
+
+	const {jumlah_produk: jumlah_produk} = await Product.findById(produk).then();
+	
+	const jumlahStok = jumlah_produk;
+
+	if (!jumlahStok) {
+		res.status(404);
+		throw new Error('Jumlah Produk Nil');
+	}
+	if (jumlah > jumlahStok) {
+		res.status(404);
+		throw new Error('Bad Request. Tidak boleh request dengan jumlah melebihi stok!');
+	}
+
 	let createdRequest = await Request.create({
 		produk,
 		jumlah,
