@@ -3,10 +3,6 @@ const Schema = mongoose.Schema
 
 const Request = new Schema(
 	{
-		nama_request: {
-			type: String,
-			required: true,
-		},
 		status_request: {
 			type: String,
 			required: true,

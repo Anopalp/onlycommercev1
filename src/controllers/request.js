@@ -26,8 +26,8 @@ const getRequest = asyncHandler(async (req, res, next) => {
 })
 
 const postRequest = asyncHandler(async (req, res, next) => {
-	const { nama, produk, jumlah } = req.body
-	if (!nama || !produk || !jumlah) {
+	const { produk, jumlah } = req.body
+	if (!produk || !jumlah) {
 		res.status(400)
 		throw new Error('Bad Request. Lengkapi Parameter!')
 	}
