@@ -32,7 +32,6 @@ const postRequest = asyncHandler(async (req, res, next) => {
 		throw new Error('Bad Request. Lengkapi Parameter!')
 	}
 	let createdRequest = await Request.create({
-		nama_request: nama,
 		produk,
 		jumlah,
 		status_request: 'requested',
