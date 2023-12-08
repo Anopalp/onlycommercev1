@@ -1,4 +1,5 @@
 const Request = require('../models/request')
+const Product = require('../models/product')
 const asyncHandler = require('express-async-handler')
 
 const getAllRequests = asyncHandler(async (req, res, next) => {
@@ -47,7 +48,11 @@ const updateRequest = asyncHandler(async (req, res, next) => {
 	const id = req.params.id
 	const newStatus = req.body.status
 	const statusOptions = ['requested', 'confirmed', 'checking', 'checked']
-	const { status_request: oldStatus } = await Request.findById(id)
+	const {
+		status_request: oldStatus,
+		produk: { id: idProduk, jumlah_produk: jumlahProdukAwal },
+		jumlah: jumlahProdukRequest,
+	} = await Request.findById(id).populate('produk')
 
 	if (!statusOptions.includes(newStatus)) {
 		res.status(400)
@@ -72,6 +77,9 @@ const updateRequest = asyncHandler(async (req, res, next) => {
 	}
 
 	if (newStatus === 'checked') {
+		await Product.findByIdAndUpdate(idProduk, {
+			jumlah_produk: jumlahProdukAwal - jumlahProdukRequest,
+		})
 		await Request.findByIdAndDelete(id)
 		res.status(200).json({
 			message: 'Request Berhasil Di-update dan Dihapus',
