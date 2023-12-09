@@ -33,7 +33,7 @@ exports.getProductById = (req, res, next) => {
 }
 
 exports.postProduct = (req, res, next) => {
-    if (!req.body || !req.body.nama_produk || !req.body.jumlah_produk || !req.body.gambar_produk) {
+    if (!req.body || !req.body.nama_produk || !req.body.jumlah_produk || !req.body.harga || !req.body.posisi) {
         res.status(400).json({
             message: 'Bad Request. Lengkapi Parameter!'
         });
@@ -43,13 +43,15 @@ exports.postProduct = (req, res, next) => {
     const id_produk = req.body.id_produk;
     const nama_produk = req.body.nama_produk;
     const jumlah_produk = req.body.jumlah_produk;
-    const gambar_produk = req.body.gambar_produk;
+    const harga = req.body.harga;
+    const blok = req.body.blok;
 
     const newProduct = new Product({
         id_produk: id_produk,
         nama_produk: nama_produk,
         jumlah_produk: jumlah_produk,
-        gambar_produk: gambar_produk
+        harga: harga,
+        blok: blok
     })
 
     newProduct.save()
