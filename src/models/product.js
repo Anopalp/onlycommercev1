@@ -15,10 +15,14 @@ const Product = new Schema(
 			type: Number,
 			required: true,
 		},
-		gambar_produk: {
-			type: String,
+		harga: {
+			type: Number,
 			required: true,
 		},
+		blok: {
+			type: String,
+			required: true
+		}
 	},
 	{
 		toJSON: {
