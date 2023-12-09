@@ -33,9 +33,27 @@ exports.getProductById = (req, res, next) => {
 }
 
 exports.postProduct = (req, res, next) => {
-    if (!req.body || !req.body.nama_produk || !req.body.jumlah_produk || !req.body.harga || !req.body.blok) {
+    if (!req.body.nama_produk) {
         res.status(400).json({
-            message: 'Bad Request. Lengkapi Parameter!'
+            message: 'Bad Request. Lengkapi nama produk!'
+        });
+        return;
+    }
+    if (!req.body.jumlah_produk) {
+        res.status(400).json({
+            message: 'Bad Request. Lengkapi jumlah produk!'
+        });
+        return;
+    }
+    if (!req.body.harga) {
+        res.status(400).json({
+            message: 'Bad Request. Lengkapi harga produk!'
+        });
+        return;
+    }
+    if (!req.body.blok) {
+        res.status(400).json({
+            message: 'Bad Request. Lengkapi blok produk!'
         });
         return;
     }
