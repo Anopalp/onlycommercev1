@@ -33,7 +33,7 @@ exports.getProductById = (req, res, next) => {
 }
 
 exports.postProduct = (req, res, next) => {
-    if (!req.body || !req.body.nama_produk || !req.body.jumlah_produk || !req.body.harga || !req.body.posisi) {
+    if (!req.body || !req.body.nama_produk || !req.body.jumlah_produk || !req.body.harga || !req.body.blok) {
         res.status(400).json({
             message: 'Bad Request. Lengkapi Parameter!'
         });
