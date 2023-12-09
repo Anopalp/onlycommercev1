@@ -27,23 +27,31 @@ const getRequest = asyncHandler(async (req, res, next) => {
 })
 
 const postRequest = asyncHandler(async (req, res, next) => {
+	const data = await Request.find({}).populate('produk')
+	const daftarIdProduk = data.map((d) => d.produk.id)
 	const { produk, jumlah } = req.body
 	if (!produk || !jumlah) {
 		res.status(400)
 		throw new Error('Bad Request. Lengkapi Parameter!')
 	}
+	if (daftarIdProduk.includes(produk)) {
+		res.status(400)
+		throw new Error('Bad Request. Produk Sudah Di-request')
+	}
 
-	const {jumlah_produk: jumlah_produk} = await Product.findById(produk).then();
-	
-	const jumlahStok = jumlah_produk;
+	const { jumlah_produk: jumlah_produk } = await Product.findById(produk).then()
+
+	const jumlahStok = jumlah_produk
 
 	if (!jumlahStok) {
-		res.status(404);
-		throw new Error('Jumlah Produk Nil');
+		res.status(404)
+		throw new Error('Jumlah Produk Nil')
 	}
 	if (jumlah > jumlahStok) {
-		res.status(404);
-		throw new Error('Bad Request. Tidak boleh request dengan jumlah melebihi stok!');
+		res.status(404)
+		throw new Error(
+			'Bad Request. Tidak boleh request dengan jumlah melebihi stok!'
+		)
 	}
 
 	let createdRequest = await Request.create({
